@@ -1,0 +1,83 @@
+<div class="card">
+  <div class="card-header">
+    {{pageTitle}}
+  </div>
+  <div class="card-body">
+    <form novalidate
+    (ngSubmit)="save()"
+    [formGroup]="registrationForm">
+
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label"
+               for="firstNameId">First Name</label>
+        <div class="col-md-8">
+          <input class="form-control"
+                 id="firstNameId"
+                 type="text"
+                 placeholder="First Name (required)"
+                 formControlName="firstName" />
+        </div>
+      </div>
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label"
+               for="lastNameId">Last Name</label>
+        <div class="col-md-8">
+          <input class="form-control"
+                 id="firstNameId"
+                 type="text"
+                 placeholder="Last Name (required)"
+                 formControlName="lastName" />
+        </div>
+      </div>
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label"
+               for="lastNameId">User Name</label>
+        <div class="col-md-8">
+          <input class="form-control"
+                 id="userNameId"
+                 type="text"
+                 placeholder="User Name (required)"
+                 formControlName="userName" />
+        </div>
+      </div>
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label"
+               for="passwordId">Password</label>
+        <div class="col-md-8">
+          <input class="form-control"
+                 id="passwordId"
+                 type="password"
+                 placeholder="Password (required)"
+                 formControlName="password" />
+        </div>
+      </div>
+      <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label"
+               for="retypepasswordId">Re-type Password</label>
+        <div class="col-md-8">
+          <input class="form-control"
+                 id="retypepasswordId"
+                 type="password"
+                 placeholder="Re-type Password (required)"
+                 formControlName="password" />
+        </div>
+      </div>
+      <div class="form-group row mb-2">
+        <div class="offset-md-2 col-md-4">
+          <button class="btn btn-primary mr-3"
+                  type="submit"
+                  style="width:80px">
+                  Save
+          </button>
+          <button class="btn btn-outline-secondary mr-3"
+          style="width:80px;"
+          type="button"
+          title="Cancel your edits"
+          [routerLink]="['/registrations']">
+    Cancel
+  </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
