@@ -32,9 +32,10 @@ import { PaymentDetailComponent } from './payment-detail/payment-detail.componen
 import { VoucherNewComponent } from './voucher-new/voucher-new.component';
 import { OutsourcedpaymentComponent } from './outsourcedpayment/outsourcedpayment.component';
 import { GuestpaymentComponent } from './guestpayment/guestpayment.component';
+import { AppMenuComponent } from './appmenu.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, ProfileComponent, AboutComponent, HelpComponent, NotFoundComponent, LoginComponent, RegistrationComponent, RegistrationEditComponent, RegistrationDetailComponent, RegistrationListComponent, PaymentComponent, VoucherComponent, StaffpaymentComponent, PaymentDetailComponent, VoucherNewComponent, OutsourcedpaymentComponent, GuestpaymentComponent],
+  declarations: [AppComponent,AppMenuComponent, HomeComponent, ProfileComponent, AboutComponent, HelpComponent, NotFoundComponent, LoginComponent, RegistrationComponent, RegistrationEditComponent, RegistrationDetailComponent, RegistrationListComponent, PaymentComponent, VoucherComponent, StaffpaymentComponent, PaymentDetailComponent, VoucherNewComponent, OutsourcedpaymentComponent, GuestpaymentComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
