@@ -18,93 +18,80 @@ import { PaymentDetailComponent } from './payment-detail/payment-detail.componen
 import { VoucherNewComponent } from './voucher-new/voucher-new.component';
 import { OutsourcedpaymentComponent } from './outsourcedpayment/outsourcedpayment.component';
 import { GuestpaymentComponent } from './guestpayment/guestpayment.component';
-import { AppMenuComponent } from './appmenu.component';
 
 
 const routes: Routes = [
   {
-    path: '', component:AppMenuComponent,
-    children:[
-      {
-        path: '', component:HomeComponent, canActivate:[AuthGuard]
-        // pathMatch: 'full',
-        // redirectTo: 'login',
-      },
-      
-  
-     
-      {
-        path: 'registrations',
-        component: RegistrationListComponent, canActivate:[AuthGuard]
-      },
-      {
-        path: 'payment',
-        component: PaymentComponent,
-      },
-      {
-        path: 'voucher',
-        component: VoucherComponent,
-      },
-      {
-        path: 'voucherdetails',
-        component: PaymentDetailComponent,
-      },
-      {
-        path: 'voucheredit',
-        component: VoucherNewComponent,
-      },
-      {
-        path: 'registrations/:id',
-        component: RegistrationEditComponent,
-      },
-      {
-        path: 'registration',
-        component: RegistrationComponent,
-      },
-    
-      {
-        path: 'staffpayment',
-        component: StaffpaymentComponent,
-      },
-      {
-        path: 'outsourcedpayment',
-        component: OutsourcedpaymentComponent,
-      },
-      {
-        path: 'guestpayment',
-        component: GuestpaymentComponent,
-      },
-    
-      {
-        path: 'home',
-        component: HomeComponent,
-      },
-      {
-        path: 'profile',
-        component: ProfileComponent,
-      },
-      {
-        path: 'about',
-        component: AboutComponent,
-      },
-      {
-        path: 'help',
-        component: HelpComponent,
-      },
-      
-    ],
-   
+    path: '', component:HomeComponent, canActivate:[AuthGuard]
+    // pathMatch: 'full',
+    // redirectTo: 'login',
   },
   {
     path: 'login',
     component: LoginComponent,
   },
   {
+    path: 'registrations',
+    component: RegistrationListComponent, canActivate:[AuthGuard]
+  },
+  {
+    path: 'payment',
+    component: PaymentComponent,
+  },
+  {
+    path: 'voucher',
+    component: VoucherComponent,
+  },
+  {
+    path: 'voucherdetails',
+    component: PaymentDetailComponent,
+  },
+  {
+    path: 'voucheredit',
+    component: VoucherNewComponent,
+  },
+  {
+    path: 'registrations/:id',
+    component: RegistrationEditComponent,
+  },
+  {
+    path: 'registration',
+    component: RegistrationComponent,
+  },
+
+  {
+    path: 'staffpayment',
+    component: StaffpaymentComponent,
+  },
+  {
+    path: 'outsourcedpayment',
+    component: OutsourcedpaymentComponent,
+  },
+  {
+    path: 'guestpayment',
+    component: GuestpaymentComponent,
+  },
+
+  {
+    path: 'home',
+    component: HomeComponent,
+  },
+  {
+    path: 'profile',
+    component: ProfileComponent,
+  },
+  {
+    path: 'about',
+    component: AboutComponent,
+  },
+  {
+    path: 'help',
+    component: HelpComponent,
+  },
+  {
     path: '**',
     component: NotFoundComponent,
   },
-   
- 
 ];
 
 @NgModule({
