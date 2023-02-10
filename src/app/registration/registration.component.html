@@ -23,7 +23,7 @@
                for="lastNameId">Last Name</label>
         <div class="col-md-8">
           <input class="form-control"
-                 id="firstNameId"
+                 id="lastNameId"
                  type="text"
                  placeholder="Last Name (required)"
                  formControlName="lastName" />
@@ -31,14 +31,17 @@
       </div>
       <div class="form-group row mb-2">
         <label class="col-md-2 col-form-label"
-               for="lastNameId">User Name</label>
+               for="emailId">Email</label>
         <div class="col-md-8">
           <input class="form-control"
-                 id="userNameId"
-                 type="text"
-                 placeholder="User Name (required)"
-                 formControlName="userName" />
-        </div>
+                 id="emailId"
+                 placeholder="Email (required)"
+                 input type="email" [class.is-invalid]="registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched" formcontrolname="email">
+                 <div *ngIf="(regEmail?.invalid && regEmail?.touched) || regEmail?.dirty">
+                   <small class="text-danger" *ngif="regEmail.errors?.pattern">Email address is required</small>
+                   <small class="text-danger" *ngif="regEmail.errors?.email">Email address is invalid</small>
+              </div>
+      </div>
       </div>
       <div class="form-group row mb-2">
         <label class="col-md-2 col-form-label"

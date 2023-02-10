@@ -4,6 +4,8 @@ import { Registration } from './registration.model';
 import { RegistrationService } from './registration.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EncrDecrService } from '../shared/EncrDecrService.service';
+import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-registration',
@@ -32,7 +34,7 @@ export class RegistrationComponent implements OnInit {
       lastName: {
         required: 'last name is required.'
       },
-      userName: {
+      email: {
         required: 'user name is required.'
       },
       password: {
@@ -46,14 +48,19 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit(){
     this.registrationForm=this.fb.group({
-      firstName:['',[Validators.required,Validators.minLength(3)]],
-      lastName:['',[Validators.required,Validators.maxLength(50)]],
-      userName:['',[Validators.required,Validators.maxLength(50)]],
-      password:['',[Validators.required,Validators.maxLength(50)]],
+      firstName:['',[Validators.minLength(3)]],
+      lastName:['',[Validators.maxLength(50)]],
+      email:['',[Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]],
+      password:['',[Validators.maxLength(50)]],
 
     });
   }
-
+  get regEmail(){
+    return this.registrationForm.get('email')
+    }
+//   setPatternValidator(){
+//     this.registrationForm.get('email')?.setValidators(Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"));  
+// }
   save(): void {
     // console.log(this.registrationForm);
     // console.log('Saved: ' + JSON.stringify(this.registrationForm.value));

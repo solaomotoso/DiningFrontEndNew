@@ -33,6 +33,7 @@ import { VoucherNewComponent } from './voucher-new/voucher-new.component';
 import { OutsourcedpaymentComponent } from './outsourcedpayment/outsourcedpayment.component';
 import { GuestpaymentComponent } from './guestpayment/guestpayment.component';
 import { AppMenuComponent } from './appmenu.component';
+//import { ReactiveFormEmailValidationComponent } from "./components/reactive-form-email-validation/reactive-form-email-validation.component";
 
 @NgModule({
   declarations: [AppComponent,AppMenuComponent, HomeComponent, ProfileComponent, AboutComponent, HelpComponent, NotFoundComponent, LoginComponent, RegistrationComponent, RegistrationEditComponent, RegistrationDetailComponent, RegistrationListComponent, PaymentComponent, VoucherComponent, StaffpaymentComponent, PaymentDetailComponent, VoucherNewComponent, OutsourcedpaymentComponent, GuestpaymentComponent],

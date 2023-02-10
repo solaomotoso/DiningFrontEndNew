@@ -8,6 +8,9 @@ import { AuthService } from './auth/auth.service';
 import { BehaviorSubject, Observable, observable } from 'rxjs';
 import { logging } from 'protractor';
 import { Registration } from './registration/registration.model';
+import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
+
 
 @UntilDestroy()
 @Component({
