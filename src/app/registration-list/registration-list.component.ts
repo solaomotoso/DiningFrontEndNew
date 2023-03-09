@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Registration } from '../registration/registration.model';
 import { RegistrationService } from '../registration/registration.service';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-registration-list',
