@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { fromEvent, merge } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 import { Subscription } from 'rxjs/internal/Subscription';
+import { Registration } from '../registration/registration.model';
 import { EncrDecrService } from '../shared/EncrDecrService.service';
 import { GenericValidator } from '../shared/generic-validator';
 import { PaymentMode } from '../shared/PaymentMode.Model';
@@ -28,6 +29,7 @@ export class OutsourcedpaymentComponent implements OnInit {
   paymentmodes!:PaymentMode[];
   vouchers!: Voucher[];
   payment!: Payment;
+  public registration: Registration | undefined;
   private sub!: Subscription;
   private validationMessages!: { [key: string]: { [key: string]: string } };
   private genericValidator!: GenericValidator;
@@ -58,8 +60,10 @@ export class OutsourcedpaymentComponent implements OnInit {
        {
           const p = { ...this.payment, ...this.paymentForm.value };
            if (p.custCode !== '') {
+            var loggeinuser = localStorage.getItem('user');
+            this.registration=loggeinuser !== null? JSON.parse(loggeinuser): new Registration();
             p.dateEntered=new Date();
-            p.enteredBy="solaomotoso";
+            p.enteredBy=this.registration?.userName;
             p.custtypeid=2;
             p.servedby="";
             if (confirm(`You are about to generate meal ticket for Staff: ${p.custCode}?`))

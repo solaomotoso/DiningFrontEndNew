@@ -4,6 +4,7 @@ export class Payment {
   enteredBy: number;
   custCode: string;
   voucherId: number;
+  unit: number;
   Amount: number;
   paymentmodeid: number;
 
@@ -13,6 +14,7 @@ constructor() {
     this.enteredBy = 0;
     this.custCode = "";
     this.voucherId = 0;
+    this.unit=0;
     this.Amount=0;
     this.paymentmodeid=0;
   }

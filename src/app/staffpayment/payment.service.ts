@@ -3,6 +3,7 @@ import { Payment } from './payment.model';
 import { HttpClient, HttpClientModule, HttpHeaders } from "@angular/common/http";
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
+import { EnvironmentUrlService } from '../shared/services/environment-url.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,15 +11,16 @@ import { catchError, tap, map } from 'rxjs/operators';
 
 export class PaymentService {
 
-  private pymtURL = "https://localhost:7146/paymentmain";
+  private pymtURL = "";
+  //"https://localhost:7146/paymentmain";
   // private userURL1 = "http://localhost:5057/";
   private pymt = Payment;
   //private handleError="";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private envUrl: EnvironmentUrlService) { }
 
   getPayment(): Observable<Payment[]> {
-    return this.http.get<Payment[]>(this.pymtURL)
+    return this.http.get<Payment[]>(this.envUrl.urlAddress+'/paymentmain')
     // .pipe(
     //   tap(data => this.getUserdata(data)),
     //   catchError(this.handleError)
@@ -33,7 +35,7 @@ export class PaymentService {
     if (id === 0) {
       return of(this.initializePayment());
     }
-    const url = `${this.pymtURL}/${id}`;
+    const url = `${this.envUrl.urlAddress+'/paymentmain'}/${id}`;
     return this.http.get<Payment>(url)
       .pipe(
         tap(data => console.log('getPayment: ' + JSON.stringify(data))),
@@ -44,7 +46,8 @@ export class PaymentService {
   createPayment(pymt: Payment): Observable<Payment> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     pymt.id = 0;
-    return this.http.post<Payment>(this.pymtURL, pymt, { headers })
+    //this.pymtURL=this.envUrl.urlAddress+'/PaymentMain';
+    return this.http.post<Payment>(this.envUrl.urlAddress+'/PaymentMain', pymt, { headers })
       .pipe(
         tap(data => console.log('createPayment: ' + JSON.stringify(data))),
         catchError(this.handleError)
@@ -54,7 +57,7 @@ export class PaymentService {
 
   deletePayment(pymt: Payment): Observable<{}> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const url = `${this.pymtURL}/deleteuser`;
+    const url = `${this.envUrl.urlAddress+'/paymentmain'}/deleteuser`;
     return this.http.post<Payment>(url,pymt)
       .pipe(
         tap(data => console.log('deletePayment: ' + pymt.custCode)),
@@ -64,7 +67,7 @@ export class PaymentService {
 
   updatePayment(pymt: Payment): Observable<Payment> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const url = `${this.pymtURL}/${pymt.id}`;
+    const url = `${this.envUrl.urlAddress+'/paymentmain'}/${pymt.id}`;
     return this.http.put<Payment>(url, pymt, { headers })
       .pipe(
         tap(() => console.log('updatePayment: ' + pymt.id)),
@@ -98,6 +101,7 @@ export class PaymentService {
       enteredBy: 0,
       custCode: "",
       voucherId: 0,
+      unit:0,
       Amount:0,
       paymentmodeid:0
     };

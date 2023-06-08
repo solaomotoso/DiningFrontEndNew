@@ -39,6 +39,16 @@
         </select>
         </div>
       </div>
+       <div class="form-group row mb-2">
+        <label class="col-md-2 col-form-label"
+               for="unitId">Select Unit</label>
+        <div class="col-md-8">
+          <select class="form-control" placeholder="Unit required" formControlName="unit">
+            <option value="0">--Select--</option>
+            <option *ngFor="let unit of Units" value="{{unit}}" >{{unit}}</option>
+        </select>
+        </div>
+      </div>
       <div class="form-group row mb-2">
         <label class="col-md-2 col-form-label"
                for="paymentmodeId">Select Payment Mode</label>

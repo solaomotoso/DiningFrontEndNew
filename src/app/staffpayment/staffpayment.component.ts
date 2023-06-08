@@ -12,6 +12,7 @@ import { Voucher } from '../voucher/voucher.model';
 import { VoucherService } from '../voucher/voucher.service';
 import { PaymentModeService } from '../shared/paymentmode.service';
 import { PaymentMode } from '../shared/PaymentMode.Model';
+import { Registration } from '../registration/registration.model';
 
 @Component({
   selector: 'app-staffpayment',
@@ -31,9 +32,12 @@ export class StaffpaymentComponent implements OnInit {
   vouchers!: Voucher[];
   paymentmodes!:PaymentMode[];
   payment!: Payment;
+  public registration: Registration | undefined;
   private sub!: Subscription;
   private validationMessages!: { [key: string]: { [key: string]: string } };
   private genericValidator!: GenericValidator;
+  public dataFields:Object={text:'Value',value:'Id'};
+  Units: any = [1,2,3,4,5,6,7,8,9,10];
 
   constructor(private fbstaff: FormBuilder, private router: Router,private paymentmodeservice:PaymentModeService,private voucherservice:VoucherService, private paymentservice: PaymentService, private encdecservice:EncrDecrService) {
 
@@ -54,7 +58,8 @@ export class StaffpaymentComponent implements OnInit {
       this.paymentForm = this.fbstaff.group({
         custCode: new FormControl('',[Validators.required,Validators.minLength(3)]),
         voucherId: new FormControl('',[Validators.required,Validators.min(1)]),
-        paymentmodeid: new FormControl('',[Validators.required,Validators.min(1)])
+        paymentmodeid: new FormControl('',[Validators.required,Validators.min(1)]),
+        unit: new FormControl('', Validators.required)
 
       });
       // this.voucherForm=this.fb2.group({
@@ -78,7 +83,9 @@ export class StaffpaymentComponent implements OnInit {
           const p = { ...this.payment, ...this.paymentForm.value };
            if (p.custCode !== '') {
             p.dateEntered=new Date();
-            p.enteredBy="solaomotoso";
+            var loggeinuser = localStorage.getItem('user');
+            this.registration=loggeinuser !== null? JSON.parse(loggeinuser): new Registration();
+            p.enteredBy=this.registration?.id.toString();
             p.custtypeid=1;
             p.servedby="";
             if (confirm(`You are about to generate a ticket for Staff: ${p.custCode}?`))

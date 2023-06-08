@@ -3,6 +3,7 @@ import { Registration } from './registration.model';
 import { HttpClient, HttpClientModule, HttpHeaders } from "@angular/common/http";
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, tap, map } from 'rxjs/operators';
+import { EnvironmentUrlService } from '../shared/services/environment-url.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class RegistrationService {
   private reg = Registration;
   //private handleError="";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private envUrl: EnvironmentUrlService) { }
 
   getUsers(): Observable<Registration[]> {
     return this.http.get<Registration[]>(this.userURL)
@@ -43,7 +44,7 @@ export class RegistrationService {
 
   getUserbyusername(username: string): Observable<Registration> {
 
-    const url = `${this.userURL}/getuser/${username}`;
+    const url = `${this.envUrl.urlAddress}/user/getuser/${username}`;
     return this.http.get<Registration>(url)
       .pipe(
         tap(data => console.log('getUser: ' + JSON.stringify(data))),
@@ -54,7 +55,7 @@ export class RegistrationService {
   createUser(registration: Registration): Observable<Registration> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     registration.id = 0;
-    return this.http.post<Registration>(this.userURL, registration, { headers })
+    return this.http.post<Registration>(this.envUrl.urlAddress+'/user', registration, { headers })
       .pipe(
         tap(data => console.log('createUser: ' + JSON.stringify(data))),
         catchError(this.handleError)

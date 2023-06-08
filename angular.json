@@ -45,7 +45,6 @@
             "buildOptimizer": false
           },
           "configurations": {
-            
             "production": {
               "fileReplacements": [
                 {
@@ -64,7 +63,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumError": "2mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -81,9 +80,10 @@
             "browserTarget": "angular-responsive-sidebar:build"
           },
           "configurations": {
-            "production": {
-              "browserTarget": "angular-responsive-sidebar:build:production"
+            "production": {  
+              "browserTarget": "angular-responsive-sidebar:build:production",
             }
+            
           }
         },
         "extract-i18n": {

@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { Registration } from '../registration/registration.model';
 import { RegistrationService } from '../registration/registration.service';
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table'
+import { MatTableDataSource } from '@angular/material/table';
+
 
 
 @Component({
@@ -16,6 +19,8 @@ export class RegistrationListComponent implements OnInit {
   imageMargin = 2;
   showImage = false;
   errorMessage = '';
+  @ViewChild('paginator') paginator!: MatPaginator;
+  public dataSource=new MatTableDataSource<Registration>();
 
   _listFilter = '';
   get listFilter(): string {
@@ -36,6 +41,10 @@ export class RegistrationListComponent implements OnInit {
     return this.registrations.filter((registration: Registration) =>
     registration.firstName.toLocaleLowerCase().indexOf(filterBy) !== -1);
   }
+  ngAfterViewInit() {
+    this.dataSource = new MatTableDataSource(this.filteredRegistrations);
+    this.dataSource.paginator=this.paginator;
+}
 
   // Checks both the product name and tags
   //performFilter2(filterBy: string): Product[] {
@@ -55,6 +64,7 @@ export class RegistrationListComponent implements OnInit {
       {
         this.registrations = registrations;
         this.filteredRegistrations = this.registrations;
+        
     });
   }
 }
